@@ -1,15 +1,29 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Calendar, Users, Clock, UtensilsCrossed } from "lucide-react";
 
 const ReservationsPage = () => {
   return (
-    <div className="min-h-screen bg-[#050505] pt-32 pb-28 relative overflow-hidden">
+    <div className="min-h-screen pt-32 pb-28 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/dining_vibe_background.png"
+          alt="Dining Vibe"
+          fill
+          className="object-cover opacity-90"
+          priority
+        />
+        {/* Lighter Dark Overlay so the image is clearly visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/60 via-[#050505]/40 to-[#050505]/90" />
+      </div>
+
       {/* Subtle background glows */}
-      <div className="absolute top-0 right-0 w-[480px] h-[480px] bg-primary/4 rounded-full blur-[140px] -mr-60 -mt-60 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[480px] h-[480px] bg-primary/3 rounded-full blur-[140px] -ml-60 -mb-60 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[480px] h-[480px] bg-primary/10 rounded-full blur-[140px] -mr-60 -mt-60 pointer-events-none z-0" />
+      <div className="absolute bottom-0 left-0 w-[480px] h-[480px] bg-primary/5 rounded-full blur-[140px] -ml-60 -mb-60 pointer-events-none z-0" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto">
