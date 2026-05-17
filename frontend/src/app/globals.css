@@ -202,13 +202,15 @@
   color: #ffffff;
   line-height: 1.1;
   letter-spacing: -0.02em;
+  text-transform: uppercase;
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 9vw, 7rem);
+  font-size: clamp(3.5rem, 10vw, 8rem); /* Made slightly larger for Oswald */
   font-weight: 700;
   color: #ffffff;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em; /* Oswald is already condensed, reduced negative tracking */
+  text-transform: uppercase;
 }

@@ -82,10 +82,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <Link href="/reservations" className="btn-primary">
-                Book a Table
-              </Link>
-              <Link href="/menu" className="btn-secondary">
+              <Link href="/menu" className="btn-primary">
                 View Menu
               </Link>
             </div>
@@ -123,77 +120,125 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── BYOB Vibe ──────────────────────────────────────────────────── */}
-      <section className="py-28 bg-[#0B0B0B]">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
+      {/* ── BYOB Vibe (Image Left Layout) ─────────────────────────────────── */}
+      <section className="py-32 bg-[#0B0B0B] relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 -translate-y-1/2" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            
+            {/* Left: Image Composition */}
+            <div className="flex-1 relative w-full aspect-[4/5] lg:aspect-square max-w-2xl mx-auto lg:mx-0">
+              {/* Main Large Image */}
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="absolute inset-0 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl"
+              >
+                <Image 
+                  src="/restaurant_hero_1778921073817.png" 
+                  alt="Restaurant Vibe" 
+                  fill 
+                  className="object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-transparent" />
+              </motion.div>
+              
+              {/* Overlapping Secondary Image */}
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="absolute -bottom-8 -right-8 w-2/3 aspect-[4/3] rounded-[2rem] overflow-hidden border-4 border-[#0B0B0B] shadow-[0_0_50px_rgba(255,215,0,0.1)] z-10"
+              >
+                <Image 
+                  src="/food_combo_1_1778921093061.png" 
+                  alt="Premium Dishes" 
+                  fill 
+                  className="object-cover hover:scale-105 transition-transform duration-700" 
+                />
+              </motion.div>
+            </div>
 
-            {/* Left: headline */}
-            <div className="flex-1">
+            {/* Right: Text Content */}
+            <div className="flex-1 flex flex-col justify-center mt-12 lg:mt-0">
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="section-label mb-4"
+                className="section-label mb-6"
               >
                 The GRAS Experience
               </motion.p>
+              
               <motion.h2
-                initial={{ x: -30, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="section-title mb-4"
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="text-5xl md:text-7xl font-serif text-white leading-[1.1] tracking-tight mb-8 uppercase"
               >
-                BYOB Dining,{" "}
+                BYOB Dining,<br />
                 <span className="text-gradient-gold">Reimagined.</span>
               </motion.h2>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="h-px bg-white/8 mt-8 origin-left w-full"
-              />
-            </div>
 
-            {/* Right: body + feature cards */}
-            <div className="flex-1">
-              <p className="text-[#A3A3A3] text-base leading-loose mb-8">
-                We&apos;ve combined the freedom of BYOB with the sophistication of a high-end restaurant.
-                Whether you&apos;re here for a private celebration or a relaxed evening out,
-                GRAS provides the perfect backdrop.
-              </p>
-              <div className="grid grid-cols-2 gap-4">
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="text-[#A3A3A3] text-lg leading-relaxed font-light mb-12"
+              >
+                We&apos;ve combined the absolute freedom of BYOB with the deep sophistication of a high-end restaurant. 
+                Whether you&apos;re here for a private celebration or an energetic night out, GRAS provides the perfect backdrop.
+              </motion.p>
+
+              <div className="space-y-8">
                 {[
                   {
-                    title: "BYOB Freedom",
-                    body: "Bring your favourite spirits — we supply premium glassware, ice, and mixers.",
-                    gold: true,
+                    title: "Ultimate Freedom",
+                    desc: "Bring your absolute favourite spirits. We supply premium glassware, ice, and curated mixers.",
+                    highlight: true
                   },
                   {
                     title: "Urban Energy",
-                    body: "Immerse yourself in our curated soundtrack and refined architectural design.",
-                    gold: false,
+                    desc: "Immerse yourself in our curated soundtrack and refined architectural design.",
+                    highlight: false
                   },
-                ].map((f) => (
-                  <div
-                    key={f.title}
-                    className={`p-6 rounded-2xl border transition-colors duration-300 ${
-                      f.gold
-                        ? "border-primary/20 bg-[rgba(255,215,0,0.04)] hover:border-primary/40"
-                        : "border-white/8 bg-[#121212] hover:border-white/15"
-                    }`}
+                  {
+                    title: "Premium Service",
+                    desc: "Experience attentive, non-intrusive service tailored to complement your evening perfectly.",
+                    highlight: false
+                  }
+                ].map((feature, idx) => (
+                  <motion.div 
+                    key={feature.title}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 + (idx * 0.1) }}
+                    className="flex gap-6 group"
                   >
-                    <h3 className={`text-sm font-semibold uppercase tracking-widest mb-2 ${f.gold ? "text-primary" : "text-white"}`}>
-                      {f.title}
-                    </h3>
-                    <p className="text-xs text-[#A3A3A3] leading-relaxed">{f.body}</p>
-                  </div>
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 border transition-colors duration-500 ${feature.highlight ? 'bg-[rgba(255,215,0,0.1)] border-primary text-primary' : 'bg-white/5 border-white/10 text-white group-hover:border-white/30'}`}>
+                      <span className="font-serif font-bold italic">0{idx + 1}</span>
+                    </div>
+                    <div>
+                      <h3 className={`text-sm font-bold tracking-widest uppercase mb-2 transition-colors ${feature.highlight ? 'text-primary' : 'text-white'}`}>
+                        {feature.title}
+                      </h3>
+                      <p className="text-[#A3A3A3] text-sm font-light leading-relaxed">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-
+            
           </div>
         </div>
       </section>
