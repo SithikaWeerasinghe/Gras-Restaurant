@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import CircularScrollMenu from "@/components/CircularScrollMenu";
+import SphereSection from "@/components/SphereSection";
 
 const COMBO_PACKAGES = [
   { id: 1, name: "Urban Feast Combo",       price: "$45", image: "/food_combo_1_1778921093061.png",      description: "Grilled wings, loaded fries, and signature sliders." },
@@ -27,6 +28,7 @@ const MenuPage = () => {
   const items = activeTab === "Combo Packages" ? COMBO_PACKAGES : BYOB_SPECIALS;
 
   return (
+    <SphereSection>
     <div className="min-h-screen bg-[#050505] pt-32 pb-28">
       <div className="container mx-auto px-6">
 
@@ -74,54 +76,20 @@ const MenuPage = () => {
           ))}
         </div>
 
-        {/* ── Grid ── */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {items.map((item) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.35 }}
-                className="group bg-[#121212] rounded-2xl overflow-hidden border border-white/8 hover:border-primary/25 transition-all duration-300"
-              >
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-600 group-hover:scale-105"
-                  />
-                  {/* Price badge */}
-                  <div className="absolute top-4 right-4 bg-primary px-3 py-1 rounded-full">
-                    <span className="text-black font-bold text-sm">{item.price}</span>
-                  </div>
-                </div>
-
-                {/* Info */}
-                <div className="p-6">
-                  <h3 className="text-white text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-200"
-                    style={{ fontFamily: "var(--font-serif)" }}>
-                    {item.name}
-                  </h3>
-                  <p className="text-[#A3A3A3] text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                  <button className="mt-5 text-primary text-xs font-semibold uppercase tracking-widest flex items-center gap-1.5 group/btn">
-                    Details
-                    <span className="h-px w-0 group-hover/btn:w-6 bg-primary transition-all duration-300 inline-block" />
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        {/* ── Circular Scroll ── */}
+        <motion.div
+          layout
+          key={activeTab}
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          <CircularScrollMenu items={items} />
         </motion.div>
 
       </div>
     </div>
+    </SphereSection>
   );
 };
 

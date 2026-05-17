@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle, Music } from "lucide-react";
+import SphereSection from "@/components/SphereSection";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -116,6 +117,8 @@ const ContactPage = () => {
       {/* ══════════════════════════════════════════════════════════════════════
           1. HERO & INTRO SECTION (COMBINED)
       ══════════════════════════════════════════════════════════════════════ */}
+      {/* flat: full-screen image hero looks best without rotateX tilt */}
+      <SphereSection flat>
       <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden pt-20 pb-20">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -166,10 +169,12 @@ const ContactPage = () => {
           </motion.div>
         </div>
       </section>
+      </SphereSection>
 
       {/* ══════════════════════════════════════════════════════════════════════
           2. MAP AND CONTACT INFO SECTION
       ══════════════════════════════════════════════════════════════════════ */}
+      <SphereSection>
       <section className="py-20 bg-[#0B0B0B]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
@@ -281,10 +286,12 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+      </SphereSection>
 
       {/* ══════════════════════════════════════════════════════════════════════
           3. EVENT AND INQUIRY FORM SECTION
       ══════════════════════════════════════════════════════════════════════ */}
+      <SphereSection>
       <section className="py-24 bg-[#050505]">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -484,6 +491,7 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
+      </SphereSection>
     </div>
   );
 };

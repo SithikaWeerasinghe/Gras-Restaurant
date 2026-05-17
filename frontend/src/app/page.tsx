@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import SphereSection from "@/components/SphereSection";
 
 const HERO_SLIDES = [
   {
@@ -33,9 +34,11 @@ export default function Home() {
   const prevSlide = () => setCurrentSlide((p) => (p - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
 
   return (
-    <div className="overflow-hidden">
+    <div className="sphere-overflow-fix">
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
+      {/* flat=true: full-screen image hero looks better without rotateX tilt */}
+      <SphereSection flat>
       <section className="relative h-screen w-full flex items-center justify-center">
         {/* Background image */}
         <AnimatePresence mode="wait">
@@ -122,8 +125,10 @@ export default function Home() {
           ))}
         </div>
       </section>
+      </SphereSection>
 
       {/* ── BYOB Vibe ──────────────────────────────────────────────────── */}
+      <SphereSection>
       <section className="py-28 bg-[#0B0B0B]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-16 items-center">
@@ -197,8 +202,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </SphereSection>
 
       {/* ── Gallery Preview ────────────────────────────────────────────── */}
+      <SphereSection>
       <section className="py-28 bg-[#050505]">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-14">
@@ -239,6 +246,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </SphereSection>
 
     </div>
   );

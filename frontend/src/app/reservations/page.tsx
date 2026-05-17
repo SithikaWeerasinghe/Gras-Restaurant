@@ -3,9 +3,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, Users, Clock, UtensilsCrossed } from "lucide-react";
+import SphereSection from "@/components/SphereSection";
 
 const ReservationsPage = () => {
   return (
+    <SphereSection>
     <div className="min-h-screen bg-[#050505] pt-32 pb-28 relative overflow-hidden">
       {/* Subtle background glows */}
       <div className="absolute top-0 right-0 w-[480px] h-[480px] bg-primary/4 rounded-full blur-[140px] -mr-60 -mt-60 pointer-events-none" />
@@ -126,6 +128,7 @@ const ReservationsPage = () => {
         </div>
       </div>
     </div>
+    </SphereSection>
   );
 };
 

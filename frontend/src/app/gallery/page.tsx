@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SphereSection from "@/components/SphereSection";
 
 const IMAGES = [
   { src: "/restaurant_hero_1778921073817.png",   alt: "Interior" },
@@ -51,13 +52,16 @@ const GalleryPage = () => {
       <div className="container mx-auto px-6">
 
         {/* ── Header ── */}
+        <SphereSection>
         <div className="text-center mb-16">
           <p className="section-label mb-4">A Visual Journey</p>
           <h1 className="section-title">The Gallery</h1>
           <p className="text-[#A3A3A3] text-base mt-4">Capturing the energy and elegance of GRAS.</p>
         </div>
+        </SphereSection>
 
         {/* ── Masonry-style Grid ── */}
+        <SphereSection>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
           {/* Row 1: three vertical */}
@@ -94,6 +98,7 @@ const GalleryPage = () => {
           <GalleryItem src={IMAGES[6].src} alt={IMAGES[6].alt} className="md:col-span-2 aspect-[16/9] md:h-auto" delay={0.46} />
 
         </div>
+        </SphereSection>
       </div>
     </div>
   );
