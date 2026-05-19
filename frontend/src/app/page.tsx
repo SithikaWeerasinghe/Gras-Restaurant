@@ -36,7 +36,7 @@ export default function Home() {
     <div className="overflow-hidden">
 
       {/* ── Hero ───────────────────────────────────────────────────────── */}
-      <section className="relative h-screen w-full flex items-center justify-center">
+      <section className="relative min-h-screen w-full flex items-center justify-center pt-24 pb-12">
         {/* Background image */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -66,8 +66,9 @@ export default function Home() {
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.45, duration: 0.9, ease: "easeOut" }}
-            className="max-w-3xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
+
             {/* Small label */}
             <p className="section-label mb-5">Premium BYOB Restaurant · Gampaha</p>
 

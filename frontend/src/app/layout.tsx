@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Oswald } from "next/font/google";
+import { Inter, Oswald, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import StyleSwitcher from "@/components/StyleSwitcher";
 
 const inter = Inter({
   variable: "--font-inter", 
@@ -13,6 +14,14 @@ const inter = Inter({
 const oswald = Oswald({
   variable: "--font-playfair", 
   subsets: ["latin"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-real",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -29,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${oswald.variable} h-full antialiased`}
+      className={`${inter.variable} ${oswald.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <Navbar />
@@ -37,7 +46,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <StyleSwitcher />
       </body>
     </html>
   );
 }
+
