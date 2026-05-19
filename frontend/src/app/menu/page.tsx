@@ -138,7 +138,7 @@ const norm = (a: number) => ((a % TWO_PI) + TWO_PI) % TWO_PI;
 export default function MenuPage() {
   /* Round Table State */
   const [tableCategory, setTableCategory] = useState<"Combo Packages" | "BYOB Special Combos">("Combo Packages");
-  
+
   const tableItems = tableCategory === "Combo Packages" ? COMBO_PACKAGES : BYOB_SPECIALS;
   const count = tableItems.length;
 
@@ -157,8 +157,8 @@ export default function MenuPage() {
 
   /* Normal Menu State */
   const [activeNormalCategory, setActiveNormalCategory] = useState("All");
-  const filteredNormalMenu = activeNormalCategory === "All" 
-    ? NORMAL_MENU 
+  const filteredNormalMenu = activeNormalCategory === "All"
+    ? NORMAL_MENU
     : NORMAL_MENU.filter(item => item.category === activeNormalCategory);
 
   /* Round Table Logic */
@@ -201,41 +201,51 @@ export default function MenuPage() {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white selection:bg-[#FFD700] selection:text-black font-sans">
-      
+
       {/* ─── 1. Menu Hero Section ────────────────────────────────────────── */}
-      <section className="relative pt-40 pb-24 px-6 overflow-hidden flex flex-col items-center justify-center text-center">
+      <section 
+        className="relative pt-32 pb-20 px-6 overflow-hidden flex flex-col items-center justify-center text-center min-h-[50vh] md:min-h-[60vh] lg:min-h-[75vh]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('/images/menu-hero-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
         {/* Subtle background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FFD700]/5 rounded-full blur-[120px] pointer-events-none" />
-        
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-[#FFD700] text-xs font-semibold tracking-[0.2em] uppercase mb-6"
-        >
-          GRAS MENU
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-5xl md:text-7xl font-bold uppercase tracking-tight mb-8 font-serif"
-        >
-          Explore Our Menu
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-[#D4D4D4] max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed"
-        >
-          Discover signature combo packages, BYOB sharing specials, and classic GRAS favourites prepared for evening dining from 4 PM to 11 PM.
-        </motion.p>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#FFD700]/10 rounded-full blur-[120px] pointer-events-none z-0" />
+
+        <div className="relative z-10 flex flex-col items-center mt-12">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-[#FFD700] text-xs font-semibold tracking-[0.2em] uppercase mb-6 drop-shadow-md"
+          >
+            GRAS MENU
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-bold uppercase tracking-tight mb-8 font-serif drop-shadow-xl"
+          >
+            Explore Our Menu
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-[#D4D4D4] max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed drop-shadow-md"
+          >
+            Discover signature combo packages, BYOB sharing specials, and classic GRAS favourites prepared for evening dining from 4 PM to 11 PM.
+          </motion.p>
+        </div>
       </section>
 
       {/* ─── 2. Round Table Menu Section ───────────────────────────────── */}
       <section className="py-20 bg-[#0B0B0B] border-y border-white/5 relative z-10 overflow-hidden">
         <div className="container mx-auto px-6">
-          
+
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-serif font-bold uppercase mb-6">
               Signature Sharing Packages
@@ -251,11 +261,10 @@ export default function MenuPage() {
               <button
                 key={cat}
                 onClick={() => setTableCategory(cat)}
-                className={`px-8 py-3.5 text-sm font-semibold tracking-widest uppercase rounded-full border transition-all duration-300 ${
-                  tableCategory === cat
-                    ? "bg-[#FFD700] text-black border-[#FFD700]"
-                    : "bg-transparent text-[#A3A3A3] border-white/10 hover:border-[#FFD700]/40 hover:text-white"
-                }`}
+                className={`px-8 py-3.5 text-sm font-semibold tracking-widest uppercase rounded-full border transition-all duration-300 ${tableCategory === cat
+                  ? "bg-[#FFD700] text-black border-[#FFD700]"
+                  : "bg-transparent text-[#A3A3A3] border-white/10 hover:border-[#FFD700]/40 hover:text-white"
+                  }`}
               >
                 {cat}
               </button>
@@ -264,10 +273,10 @@ export default function MenuPage() {
 
           {/* Round Table Layout */}
           <div className="flex flex-col lg:flex-row gap-12 items-center lg:items-stretch min-h-[600px]">
-            
+
             {/* Left: Round Table Circle (Desktop & Tablet) */}
             <div className="w-full lg:w-1/2 relative flex justify-center items-center h-[550px] lg:h-[600px] hidden md:flex" ref={tableRef}>
-              <div 
+              <div
                 className="relative w-[460px] h-[460px] rounded-full border border-white/10 flex items-center justify-center transition-transform duration-700 ease-out"
                 style={{
                   background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.5) 100%)",
@@ -277,7 +286,7 @@ export default function MenuPage() {
                 }}
               >
                 {/* Center Label */}
-                <div 
+                <div
                   className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-10 transition-transform duration-700 ease-out"
                   style={{ transform: `rotate(${activeIdx * (360 / count)}deg)` }}
                 >
@@ -296,7 +305,7 @@ export default function MenuPage() {
                       <div className="w-8 h-px bg-[#FFD700]/50"></div>
                     </div>
                     <p className="text-[#A3A3A3] text-xs tracking-wide leading-relaxed">
-                      {tableCategory === "Combo Packages" 
+                      {tableCategory === "Combo Packages"
                         ? "Share the food, relax in peace, and enjoy the table with your family."
                         : "Bring your own bottle, stay relaxed in peace, and enjoy the GRAS night."}
                     </p>
@@ -307,7 +316,7 @@ export default function MenuPage() {
                 {tableItems.map((item, i) => {
                   const angleDeg = i * (360 / count);
                   const isActive = i === activeIdx;
-                  
+
                   return (
                     <div
                       key={item.id}
@@ -316,19 +325,18 @@ export default function MenuPage() {
                         transform: `rotate(${angleDeg}deg) translateY(-230px) rotate(${-angleDeg}deg)`, // Position on circle
                       }}
                     >
-                      <div 
+                      <div
                         className="w-full h-full transition-transform duration-700 ease-out"
                         style={{
                           transform: `rotate(${activeIdx * (360 / count)}deg)` // Counter-rotate to stay upright
                         }}
                       >
-                         <button
+                        <button
                           onClick={() => rotateTo(i)}
-                          className={`w-full h-full rounded-2xl flex flex-col items-center justify-center p-3 text-center transition-all duration-500 cursor-pointer group ${
-                            isActive 
-                              ? "bg-[#181818] border-2 border-[#FFD700] scale-110 shadow-[0_10px_30px_rgba(255,215,0,0.15)] z-20" 
-                              : "bg-[#121212] border border-white/10 scale-90 opacity-70 hover:opacity-100 hover:border-white/30 z-10 hover:bg-[#151515]"
-                          }`}
+                          className={`w-full h-full rounded-2xl flex flex-col items-center justify-center p-3 text-center transition-all duration-500 cursor-pointer group ${isActive
+                            ? "bg-[#181818] border-2 border-[#FFD700] scale-110 shadow-[0_10px_30px_rgba(255,215,0,0.15)] z-20"
+                            : "bg-[#121212] border border-white/10 scale-90 opacity-70 hover:opacity-100 hover:border-white/30 z-10 hover:bg-[#151515]"
+                            }`}
                         >
                           <span className={`text-xs font-serif font-bold mb-1.5 leading-snug ${isActive ? 'text-white' : 'text-[#D4D4D4] group-hover:text-white'}`}>{item.name}</span>
                           <span className={`text-[13px] font-bold mb-1.5 ${isActive ? 'text-[#FFD700]' : 'text-[#FFD700]/70'}`}>{item.price}</span>
@@ -356,13 +364,12 @@ export default function MenuPage() {
             {/* Mobile View: Horizontal Scroll Cards */}
             <div className="w-full md:hidden flex overflow-x-auto pb-8 pt-4 px-4 snap-x snap-mandatory gap-4 no-scrollbar">
               {tableItems.map((item, i) => (
-                <div 
-                  key={item.id} 
-                  className={`min-w-[95px] w-[95px] h-[95px] snap-center shrink-0 rounded-xl flex flex-col items-center justify-center p-2 text-center transition-all duration-300 ${
-                    i === activeIdx 
-                      ? "bg-[#181818] border-2 border-[#FFD700] shadow-[0_5px_20px_rgba(255,215,0,0.15)] scale-105" 
-                      : "bg-[#121212] border border-white/10 opacity-70 scale-95"
-                  }`}
+                <div
+                  key={item.id}
+                  className={`min-w-[95px] w-[95px] h-[95px] snap-center shrink-0 rounded-xl flex flex-col items-center justify-center p-2 text-center transition-all duration-300 ${i === activeIdx
+                    ? "bg-[#181818] border-2 border-[#FFD700] shadow-[0_5px_20px_rgba(255,215,0,0.15)] scale-105"
+                    : "bg-[#121212] border border-white/10 opacity-70 scale-95"
+                    }`}
                   onClick={() => setActiveIdx(i)}
                 >
                   <span className="text-[10px] font-serif font-bold text-white mb-1.5 leading-tight line-clamp-2">{item.name}</span>
@@ -387,19 +394,19 @@ export default function MenuPage() {
                 >
                   {/* Subtle top border accent */}
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-50" />
-                  
+
                   <span className="inline-block px-3 py-1 bg-[#FFD700]/10 text-[#FFD700] text-xs font-bold uppercase tracking-wider rounded-full mb-6">
                     {activeItem.highlight}
                   </span>
-                  
+
                   <h3 className="text-3xl lg:text-4xl font-serif font-bold mb-4 leading-tight">
                     {activeItem.name}
                   </h3>
-                  
+
                   <p className="text-[#A3A3A3] text-sm lg:text-base leading-relaxed mb-8">
                     {activeItem.shortDesc}
                   </p>
-                  
+
                   <div className="flex items-end gap-4 mb-8 pb-8 border-b border-white/10">
                     <div className="text-4xl lg:text-5xl font-bold text-[#FFD700]">
                       {activeItem.price}
@@ -408,7 +415,7 @@ export default function MenuPage() {
                       Serves {activeItem.serves}
                     </div>
                   </div>
-                  
+
                   <div className="mb-10">
                     <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">Includes:</h4>
                     <ul className="space-y-3">
@@ -420,7 +427,7 @@ export default function MenuPage() {
                       ))}
                     </ul>
                   </div>
-                  
+
                   <button className="w-full py-4 bg-[#FFD700] hover:bg-[#EAB308] text-black font-bold uppercase tracking-widest text-sm rounded-full transition-colors flex items-center justify-center gap-2">
                     Add to Booking <ArrowRight size={16} />
                   </button>
@@ -435,7 +442,7 @@ export default function MenuPage() {
       {/* ─── 3. Normal Menu Section ────────────────────────────────────── */}
       <section className="py-24 bg-[#050505]">
         <div className="container mx-auto px-6">
-          
+
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif font-bold uppercase mb-4">
               Explore Our Full Menu
@@ -451,11 +458,10 @@ export default function MenuPage() {
               <button
                 key={cat}
                 onClick={() => setActiveNormalCategory(cat)}
-                className={`px-5 py-2 text-xs md:text-sm font-semibold tracking-wider uppercase rounded-full border transition-all duration-300 ${
-                  activeNormalCategory === cat
-                    ? "bg-white text-black border-white"
-                    : "bg-[#121212] text-[#A3A3A3] border-white/10 hover:border-white/30 hover:text-white"
-                }`}
+                className={`px-5 py-2 text-xs md:text-sm font-semibold tracking-wider uppercase rounded-full border transition-all duration-300 ${activeNormalCategory === cat
+                  ? "bg-white text-black border-white"
+                  : "bg-[#121212] text-[#A3A3A3] border-white/10 hover:border-white/30 hover:text-white"
+                  }`}
               >
                 {cat}
               </button>
@@ -481,11 +487,11 @@ export default function MenuPage() {
                     </h3>
                     <span className="text-[#FFD700] font-bold">{item.price}</span>
                   </div>
-                  
+
                   <p className="text-[#A3A3A3] text-sm leading-relaxed mb-6 flex-grow">
                     {item.shortDesc}
                   </p>
-                  
+
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
                     <span className="text-white/30 text-xs font-semibold uppercase tracking-widest">
                       {item.category}
@@ -500,7 +506,7 @@ export default function MenuPage() {
               ))}
             </AnimatePresence>
           </motion.div>
-          
+
         </div>
       </section>
 
