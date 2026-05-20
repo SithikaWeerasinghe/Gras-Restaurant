@@ -5,8 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle, Music } from "lucide-react";
+import { Variants } from "framer-motion";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
+
 
 type FormData = {
   name: string;
@@ -32,15 +34,16 @@ const INQUIRY_TYPES = [
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 };
+
 
 // ─── Component ─────────────────────────────────────────────────────────────────
 
